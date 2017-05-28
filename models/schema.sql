@@ -40,8 +40,8 @@ CREATE TABLE questions
 qdate_added timestamp default now(),
 question TEXT,
 quser_id int REFERENCES users(user_id),
-qtopic_id int REFERENCES subjects(subject_id)
-question_sub TEXT,
+qtopic_id int REFERENCES subjects(subject_id) ON DELETE CASCADE,
+question_sub TEXT
  );
 
 DROP TABLE IF EXISTS answers CASCADE;
