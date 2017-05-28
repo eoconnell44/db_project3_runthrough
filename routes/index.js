@@ -40,7 +40,7 @@ router.delete('/questions/:qquestion_id', db.deleteQuestion);
 router.post('/questions',db.createQuestion);
 // router.get('/QA',db.getAllQuestionsWithAnswersBySubject);
 router.get('/QA',db.getAllQuestionsWithAnswers);
-router.get('/QA/:subject_id',db.getAllQuestionsWithAnswersBySubject);
+router.get('/QA/:question_sub',db.getAllQuestionsWithAnswersBySubject);
 
 // router.patch('/QA/:subject_id/', db.createQuestion);
 // // get one question with corresponding answers organized by subject

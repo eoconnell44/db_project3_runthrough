@@ -32,7 +32,12 @@ INSERT INTO questions(question,qtopic_id,question_sub)
   ('What really is JavaScript?',1, 'javascript'),
   ('What is Express?',2, 'express'),
   ('What is React?',3, 'react'),
-  ('What is Node.js?',4, 'node');
+  ('What is Node.js?',4, 'node'),
+  ('Is Node javascript?',4, 'node'),
+  ('IS React javascript?',3, 'react'),
+  ('Is Express js?',4, 'express'),
+  ('How do they work in js?',1, 'javascript'),
+  ('Hows react work with node?',3, 'react');
 
 INSERT INTO answers(aquestion_id,answer,atopic_id)
     VALUES
@@ -41,5 +46,12 @@ INSERT INTO answers(aquestion_id,answer,atopic_id)
   (1, 'this is a third answer for the first javascript question',1),
   (2, 'JavaScript is really a programming language dude',1),
   (3, 'Express is a framework for node.js dude',2),
-  (4, 'React is stoopid',3),
-  (5, 'Node.js is a test',4);
+  (9, 'React is stoopid',3),
+  (3, 'React is reactable',3),
+  (4, 'React is the new wave',3),
+  (8, 'Express is expressable',2),
+  (10, 'Node is nodeable',4),
+  (10, 'Node.js is a test',4);
+
+
+
