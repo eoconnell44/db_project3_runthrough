@@ -28,11 +28,11 @@ INSERT INTO documentation(main_topic,topic,url,main_tag,rel_tag_one)
 
 INSERT INTO questions(question,qtopic_id)
     VALUES
-  ('What is JavaScript?',1),
-  ('What really is JavaScript?',1),
-  ('What is Express?',2),
-  ('What is React?',3),
-  ('What is Node.js?',4);
+  ('What is JavaScript?',1, 'javascript'),
+  ('What really is JavaScript?',1, 'javascript')),
+  ('What is Express?',2, 'express'),
+  ('What is React?',3, 'react'),
+  ('What is Node.js?',4, 'node');
 
 INSERT INTO answers(aquestion_id,answer,atopic_id)
     VALUES
