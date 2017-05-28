@@ -5,6 +5,7 @@ var options = {
 var pgp = require('pg-promise')();
 var connString = process.env.DATABASE_URL;
 var db = pgp(connString);
+var cors = require('cors');
 
 
 /////////////////////////////////////////////////////////
@@ -71,8 +72,9 @@ createAnswer = (req,res,next) => {
 ////////////////////////////
 
 getALlQuestionsBySubject = (req,res,next) => {
-  var qtopic_id = parseInt(req.params.qtopic_id)
-  db.any('SELECT * FROM questions WHERE qtopic_id=$1',[qtopic_id])
+  var question_sub = req.params.question_sub
+  console.log('Whats this showing', req.params.question_sub);
+  db.any('SELECT * FROM questions WHERE question_sub=$1',[question_sub])
   .then(data => {
     res.status(200)
     .json({

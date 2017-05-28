@@ -23,7 +23,7 @@ router.get('/documentation/react', db.getAllReactDocumentation);
 // QUESTIONS
 // all the questions are stored on this route
 router.get('/questions', db.getAllQuestions);
-router.get('/questions/:qtopic_id', db.getAllQuestionsBySubject);
+router.get('/questions/:question_sub', db.getAllQuestionsBySubject);
 // // post a question that will be stored in this route
 // router.post('/questions',db.createQuestion);
 // // get one question based on its id
