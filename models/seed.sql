@@ -6,7 +6,7 @@ INSERT INTO subjects(subject)
   ('javascript'),
   ('express'),
   ('react'),
-  ('node.js');
+  ('node');
 
 INSERT INTO documentation(main_topic,topic,url,main_tag,rel_tag_one,rel_tag_two)
     VALUES
