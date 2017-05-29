@@ -30,8 +30,8 @@ var cors = require('cors');
 //   return t.batch([...dbArray]);
 // })
 createQuestion = (req,res,next) => {
-  db.none("INSERT INTO questions(question, qtopic_id)" +
-"values(${question}, ${qtopic_id})", req.body)
+  db.none("INSERT INTO questions(question, qtopic_id, question_sub)" +
+"values(${question}, ${qtopic_id}, ${question_sub})", req.body)
 // db.task(t => {
 //   var q1 = t.none('INSERT INTO questions(question, qtopic_id)' + "values(${question}, ${qtopic_id})", req.body)
 //   var q2 = t.none('INSERT INTO answers(aquestion_id,atopic_id)' + "values(${aquestion_id}, ${atopic_id})",req.body)
