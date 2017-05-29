@@ -77,13 +77,12 @@ createAnswer = (req,res,next) => {
 //SELECT * FROM questions WHERE question_sub = 'javascript' AND qquestion_id = '2';
 getOneQuestionWithAnswers = (req,res,next) => {
 	var qquestion_id = req.params.qquestion_id
-	var question_sub = req.params.question_sub
 	console.log('Do we see ID===>', req.params.qquestion_id); 
-	db.task(t => {
-		var q2 = t.any('SELECT * FROM questions WHERE question_sub = $1 AND qquestion_id=$2',[question_sub],[qquestion_id])
-		var q3 = t.any('SELECT * FROM answers WHERE aquestion_id=$1',[qquestion_id])
+  db.task(t => {
+    var q2 = t.any('SELECT * FROM questions WHERE qquestion_id=$1',[qquestion_id])
+    var q3 = t.any('SELECT * FROM answers WHERE aquestion_id=$1',[qquestion_id])
     return t.batch([q2,q3]);
-  })	
+  })
   .then(data => {
     res.status(200)
     .json({

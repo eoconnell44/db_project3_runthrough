@@ -21,7 +21,7 @@ router.get('/documentation/express', db.getAllExpressDocumentation);
 router.get('/documentation/react', db.getAllReactDocumentation);
 
 // QUESTIONS
-router.get('/QA/:question_sub/:qquestion_id', db.getOneQuestionWithAnswers);
+router.get('/QA/:qquestion_id', db.getOneQuestionWithAnswers);
 // all the questions are stored on this route
 router.get('/questions', db.getAllQuestions);
 router.get('/questions/:question_sub', db.getAllQuestionsBySubject);
