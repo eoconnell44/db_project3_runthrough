@@ -32,7 +32,7 @@ var cors = require('cors');
 
 //router.post('/questions',db.createQuestion);
 createQuestion = (req,res,next) => {
-  db.one("INSERT INTO questions(question, qtopic_id, question_sub)" +
+  db.none("INSERT INTO questions(question, qtopic_id, question_sub)" +
 "values(${question}, ${qtopic_id}, ${question_sub})", req.body)
 // db.task(t => {
 //   var q1 = t.none('INSERT INTO questions(question, qtopic_id)' + "values(${question}, ${qtopic_id})", req.body)
@@ -73,6 +73,28 @@ createAnswer = (req,res,next) => {
 /////////////////////////////
 ////////////////////////////
 
+//router.get('/QA/:qquestion_id', db.getOneQuestionWithAnswers);
+getOneQuestionById = (req,res,next) => {
+	var qquestion_id = req.params.qquestion_id
+	console.log('Do we see ID===>', req.params.qquestion_id);
+	db.task(t => {
+		var q2 = t.any('SELECT * FROM questions WHERE qquestion_id=$1',[qquestion_id])
+		var q3 = t.any('SELECT * FROM answers WHERE aquestion_id=$1',[qquestion_id])
+    return t.batch([q2,q3]);
+  })	
+  .then(data => {
+    res.status(200)
+    .json({
+      status: 'success',
+      question: data[0],
+      answer: data[1],
+    });
+  })
+  .catch(function(err){
+    return next(err);
+  })
+};
+//router.get('/questions/:question_sub', db.getAllQuestionsBySubject);
 getALlQuestionsBySubject = (req,res,next) => {
   var question_sub = req.params.question_sub
   console.log('Whats this showing', req.params.question_sub);
@@ -89,10 +111,8 @@ getALlQuestionsBySubject = (req,res,next) => {
   })
 
 }
-
+//router.get('/QA',db.getAllQuestionsWithAnswers);
 getAllQuestionsWithAnswers= (req,res,next) => {
-
-
   // var qtopic_id = parseInt(req.params.qtopic_id)
   db.any('DROP VIEW IF EXISTS compiled; CREATE VIEW compiled AS SELECT * FROM questions, answers WHERE (questions.qquestion_id = answers.aquestion_id); SELECT * FROM compiled')
   // 'SELECT * FROM questions; SELECT * FROM answers; JOIN answers ON questions.qquestion_id = answers.aquestion_id WHERE qtopic_id=$1'
@@ -241,7 +261,7 @@ getAllReactDocumentation = (req,res,next) => {
       return next(err);
     });
 };
-
+//router.get('/questions', db.getAllQuestions);
 getAllQuestions = (req,res,next) => {
   db.any('SELECT * FROM questions')
   .then(function(data){
