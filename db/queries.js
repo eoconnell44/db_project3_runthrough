@@ -77,6 +77,7 @@ createAnswer = (req,res,next) => {
 //SELECT * FROM questions WHERE question_sub = 'javascript' AND qquestion_id = '2';
 getOneQuestionWithAnswers = (req,res,next) => {
 	var qquestion_id = req.params.qquestion_id
+	var question_sub = req.params.question_sub
 	console.log('Do we see ID===>', req.params.qquestion_id); 
 	db.task(t => {
 		var q2 = t.any('SELECT * FROM questions WHERE question_sub = $1 AND qquestion_id=$2',[question_sub],[qquestion_id])
