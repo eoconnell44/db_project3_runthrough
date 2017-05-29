@@ -73,7 +73,28 @@ createAnswer = (req,res,next) => {
 /////////////////////////////
 ////////////////////////////
 
-//router.get('/QA/:qquestion_id', db.getOneQuestionWithAnswers);
+//router.get('/QA/:question_sub/:qquestion_id', db.getOneQuestionWithAnswers);
+getOneQuestionWithAnswers = (req,res,next) => {
+	var qquestion_id = req.params.qquestion_id
+	console.log('Do we see ID===>', req.params.qquestion_id);
+	db.task(t => {
+		var q2 = t.any('SELECT * FROM questions WHERE qquestion_id=$1',[qquestion_id])
+		var q3 = t.any('SELECT * FROM answers WHERE aquestion_id=$1',[qquestion_id])
+    return t.batch([q2,q3]);
+  })	
+  .then(data => {
+    res.status(200)
+    .json({
+      status: 'success',
+      question: data[0],
+      answer: data[1],
+    });
+  })
+  .catch(function(err){
+    return next(err);
+  })
+};
+	
 getOneQuestionById = (req,res,next) => {
 	var qquestion_id = req.params.qquestion_id
 	console.log('Do we see ID===>', req.params.qquestion_id);
