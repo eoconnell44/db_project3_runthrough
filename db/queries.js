@@ -76,13 +76,14 @@ createAnswer = (req,res,next) => {
 //router.get('/QA/:question_sub/:qquestion_id', db.getOneQuestionWithAnswers);
 //SELECT * FROM questions WHERE question_sub = 'javascript' AND qquestion_id = '2';
 getOneQuestionWithAnswers = (req,res,next) => {
-	var qquestion_id = req.params.qquestion_id
-	console.log('Do we see ID===>', req.params.qquestion_id); 
-  db.task(t => {
-    var q2 = t.any('SELECT * FROM questions WHERE qquestion_id=$1',[qquestion_id])
-    var q3 = t.any('SELECT * FROM answers WHERE aquestion_id=$1',[qquestion_id])
+    var qquestion_id = req.params.qquestion_id
+    var question_sub = req.params.question_sub
+    console.log('Do we see ID===>', req.params.qquestion_id); 
+    db.task(t => {
+        var q2 = t.any('SELECT * FROM questions WHERE question_sub = $1 AND qquestion_id=$2',[question_sub],[qquestion_id])
+        var q3 = t.any('SELECT * FROM answers WHERE aquestion_id=$2',[question_sub],[qquestion_id])
     return t.batch([q2,q3]);
-  })
+  })    
   .then(data => {
     res.status(200)
     .json({
@@ -117,7 +118,7 @@ getOneQuestionById = (req,res,next) => {
   })
 };
 //router.get('/questions/:question_sub', db.getAllQuestionsBySubject);
-getALlQuestionsBySubject = (req,res,next) => {
+getAllQuestionsBySubject = (req,res,next) => {
   var question_sub = req.params.question_sub
   console.log('Whats this showing', req.params.question_sub);
   db.any('SELECT * FROM questions WHERE question_sub=$1',[question_sub])
@@ -186,7 +187,6 @@ const findAnswers = (req, res, next) =>{
 
 getOneQuestionWithAnswersBySubject = (req,res,next) => {
   db.task(t => {
-    // var subject_id = parseInt(req.params.subject_id)
     var subject_id = parseInt(req.params.subject_id)
     // var topic_id = parseInt(req.params.topic_id)
     // var date_added = (req.params.date_added)
