@@ -29,8 +29,10 @@ var cors = require('cors');
 //   var dbArray = [q1,q2,q3]
 //   return t.batch([...dbArray]);
 // })
+
+//router.post('/questions',db.createQuestion);
 createQuestion = (req,res,next) => {
-  db.none("INSERT INTO questions(question, qtopic_id, question_sub)" +
+  db.one("INSERT INTO questions(question, qtopic_id, question_sub)" +
 "values(${question}, ${qtopic_id}, ${question_sub})", req.body)
 // db.task(t => {
 //   var q1 = t.none('INSERT INTO questions(question, qtopic_id)' + "values(${question}, ${qtopic_id})", req.body)
@@ -109,7 +111,7 @@ getAllQuestionsWithAnswers= (req,res,next) => {
     return next(err);
   })
 };
-
+//router.get('/QA/:question_sub' ,db.getAllQuestionsWithAnswersBySubject);
 getAllQuestionsWithAnswersBySubject= (req,res,next) => {
   var question_sub = req.params.question_sub
   // var subject_id= parseInt(req.params.subject_id)
