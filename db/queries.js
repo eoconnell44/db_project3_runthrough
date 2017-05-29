@@ -442,7 +442,8 @@ module.exports = {
   getAllExpressDocumentation: getAllExpressDocumentation,
   getAllReactDocumentation: getAllReactDocumentation,
   getALlQuestionsBySubject: getALlQuestionsBySubject,
-  deleteQuestion: deleteQuestion
+  deleteQuestion: deleteQuestion,
+  getOneQuestionWithAnswers: getOneQuestionWithAnswers,
 
 };
 
