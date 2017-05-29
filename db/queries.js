@@ -75,7 +75,7 @@ createAnswer = (req,res,next) => {
 
 //router.get('/QA/:question_sub/:qquestion_id', db.getOneQuestionWithAnswers);
 //SELECT * FROM questions WHERE question_sub = 'javascript' AND qquestion_id = '2';
-getOneQuestionWithAnswers = (req,res,next) => {
+/*getOneQuestionWithAnswers = (req,res,next) => {
     var qquestion_id = req.params.qquestion_id
     var question_sub = req.params.question_sub
     console.log('Do we see ID===>', req.params.qquestion_id); 
@@ -95,7 +95,7 @@ getOneQuestionWithAnswers = (req,res,next) => {
   .catch(function(err){
     return next(err);
   })
-};
+};*/
 
 getOneQuestionById = (req,res,next) => {
 	var qquestion_id = req.params.qquestion_id
@@ -443,7 +443,7 @@ module.exports = {
   getAllReactDocumentation: getAllReactDocumentation,
   getALlQuestionsBySubject: getALlQuestionsBySubject,
   deleteQuestion: deleteQuestion,
-  getOneQuestionWithAnswers: getOneQuestionWithAnswers,
+  // getOneQuestionWithAnswers: getOneQuestionWithAnswers,
 
 };
 
